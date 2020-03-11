@@ -96,7 +96,7 @@ do
   
   if [ "$XDG_CURRENT_DESKTOP" = "LXQt" ]
   then
-    sed -n '/^Wallpaper=/s///p' ~/.config/pcmanfm-qt/lxqt/settings.conf
+    xres=($(sed -n '/^Wallpaper=/s///p' ~/.config/pcmanfm-qt/lxqt/settings.conf))
     for x in "${xres[@]}"
     do
       pcmanfm-qt --set-wallpaper=$path$imgName
