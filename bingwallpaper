@@ -94,12 +94,12 @@ do
   # Writing copyright.
   echo "$copyright" > $path${imgName/%.jpg/.txt}
   
-  if [ "$XDG_CURRENT_DESKTOP" = "XFCE" ]
+  if [ "$XDG_CURRENT_DESKTOP" = "LXQt" ]
   then
-    xres=($(echo $(xfconf-query --channel xfce4-desktop --list | grep last-image)))
+    xres=($(sed -n '/^Wallpaper=/s///p' ~/.config/pcmanfm-qt/lxqt/settings.conf))
     for x in "${xres[@]}"
     do
-      xfconf-query --channel xfce4-desktop --property $x --set $path$imgName
+      pcmanfm-qt --set-wallpaper=$path$imgName
     done
   elif [ "$XDG_CURRENT_DESKTOP" = "MATE" ]
   then
